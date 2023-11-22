@@ -76,32 +76,29 @@ function checkForMatch() {
   const cards = document.querySelectorAll("img");
   const optionOneId = cardsChosenIds[0];
   const optionTwoId = cardsChosenIds[1];
-  //make same for option 2 id from cardschosedis[1
-  if (optionOneId == optionTwoId) {
+  const optionOneImage = cards[optionOneId].getAttribute("src");
+  const optionTwoImage = cards[optionTwoId].getAttribute("src");
+
+  if (optionOneId === optionTwoId) {
+    alert("you have clicked same images");
     cards[optionOneId].setAttribute("src", "images/blank.png");
     cards[optionTwoId].setAttribute("src", "images/blank.png");
-    alert("you have clicked same images");
-  }
-
-  if (cardsChosen[0] == cardsChosen[1]) {
+  } else if (cardsChosen[0] === cardsChosen[1]) {
     alert("Paiyen pudchitan ,ellam technology");
-    //make the chosen card into white.png image
     cards[optionOneId].setAttribute("src", "images/white.png");
     cards[optionTwoId].setAttribute("src", "images/white.png");
-    //remove event listener for cards chosen
     cards[optionOneId].removeEventListener("click", flipCard);
     cards[optionTwoId].removeEventListener("click", flipCard);
     cardsWon.push(cardsChosen);
-    console.log(cardsWon);
   } else {
     cards[optionOneId].setAttribute("src", "images/blank.png");
     cards[optionTwoId].setAttribute("src", "images/blank.png");
     alert("Kaipulla You can do it uuuh");
   }
-  resultDisplay.textContent = cardsWon.length;
 
   cardsChosen = [];
   cardsChosenIds = [];
+  resultDisplay.textContent = cardsWon.length;
   if (cardsWon.length == cardArray.length / 2) {
     resultDisplay.textContent = "Jaichita da Maara";
   }
